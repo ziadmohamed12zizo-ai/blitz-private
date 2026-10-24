@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BLITZ PRIVATE</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#0b1220,#172554);font-family:system-ui,-apple-system,sans-serif;color:#f8fafc}
+.card{width:min(100%,420px);padding:28px;border:1px solid #334155;border-radius:24px;background:#111c31;box-shadow:0 20px 60px #0005}
+.logo{width:62px;height:62px;display:grid;place-items:center;margin:auto;border-radius:18px;background:#2563eb;font-size:30px;font-weight:900}
+h1{text-align:center;font-size:25px;margin:16px 0 6px;letter-spacing:1px}p{color:#cbd5e1;text-align:center;margin:0 0 22px}
+label{display:block;margin-bottom:8px;font-size:14px;color:#cbd5e1}input{width:100%;padding:14px;border-radius:12px;border:1px solid #475569;background:#0b1220;color:white;font-size:16px;outline:none}input:focus{border-color:#60a5fa}
+button{width:100%;margin-top:12px;padding:14px;border:0;border-radius:12px;background:#3b82f6;color:white;font-size:16px;font-weight:700;cursor:pointer}
+#msg{min-height:25px;margin-top:14px;text-align:center;font-size:14px}.success{color:#86efac}.error{color:#fca5a5}
+#file{display:none;margin-top:18px;padding:18px;border-radius:14px;background:#0b1220;border:1px solid #334155;text-align:center}#file a{display:inline-block;margin-top:12px;color:#93c5fd}
+.note{font-size:12px;color:#94a3b8;margin-top:20px;line-height:1.6}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="logo">B</div>
+  <h1>BLITZ PRIVATE</h1>
+  <p>اكتب الباسورد لفتح ملف التجربة</p>
+  <form id="form">
+    <label for="password">الباسورد</label>
+    <input id="password" type="password" placeholder="اكتب الباسورد هنا" autocomplete="off" required>
+    <button type="submit">فتح الملف</button>
+  </form>
+  <div id="msg" role="status"></div>
+  <section id="file">
+    <strong>✅ تم فتح ملف التجربة</strong>
+    <p style="margin:10px 0 0">نجح الباسورد! دي شاشة تجريبية وليست ملف PDF حقيقي.</p>
+    <a href="#" id="sample" onclick="return false">معاينة ملف PDF (تجريبي)</a>
+  </section>
+  <div class="note">نسخة تيست فقط: الباسوردات موجودة داخل كود الصفحة ويمكن لأي شخص فحصها؛ لا تستخدمها لحماية ملفات حقيقية.</div>
+</main>
+<script>
+const VALID_PASSWORDS = ["BLITZ123", "TEST456", "PDF789"];
+const form = document.getElementById("form");
+const input = document.getElementById("password");
+const msg = document.getElementById("msg");
+const file = document.getElementById("file");
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+  if (VALID_PASSWORDS.includes(input.value.trim())) {
+    msg.textContent = "الباسورد صحيح!";
+    msg.className = "success";
+    file.style.display = "block";
+  } else {
+    msg.textContent = "الباسورد غلط، جرّب تاني.";
+    msg.className = "error";
+    file.style.display = "none";
+  }
+});
+</script>
+</body>
+</html>
